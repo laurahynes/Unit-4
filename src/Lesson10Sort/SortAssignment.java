@@ -308,6 +308,14 @@ public class SortAssignment extends javax.swing.JFrame {
 
     private void btnquickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquickActionPerformed
         // TODO add your handling code here:
+        long start = System.currentTimeMillis();
+        quickSort(nums, 0, (nums.length - 1));
+        long elaspedTime = System.currentTimeMillis() - start;
+        txttime.setText("Time: " + elaspedTime + " ms");
+        model.clear();
+        for (int i = 0; i < nums.length; i++) {
+            model.addElement(nums[i]);
+        }
         btnbubble.setEnabled(false);
         btnselect.setEnabled(false);
         btninsert.setEnabled(false);
@@ -432,6 +440,27 @@ public class SortAssignment extends javax.swing.JFrame {
             }//end while
         }//end for
     }//end method
+    
+    public static void quickSort(int[] a, int left, int right){
+        if(left >=right) return;
+        
+        int i = left;
+        int j = right;
+        int pivotValue = a[(left + right) / 2];
+        while(i < j){
+            while(a[i] < pivotValue) i++;
+            while(pivotValue < a[j]) j--;
+            if(i <= j){
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        quickSort(a, left, j);
+        quickSort(a, i, right);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbubble;
