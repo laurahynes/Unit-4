@@ -2,12 +2,15 @@ package Lesson11Recursion;
 
 public class Fibonacci {
 
+    static long count=0L;
     public static void main(String[] args) {
-        System.out.println("The 8th fib is " + fib1(8));
-        System.out.println("The 8th fib is (recursive) " + (recfib(8)));
+        System.out.println("The 8th fib is " + fib1(50));
+        System.out.println("The 8th fib is (recursive) " + (recfib(50)));
+        System.out.println("recfib was called a total of " + count + " times.");
     }
     
     public static int recfib(int num){
+        count++;
         if(num == 1 || num == 2) return 1;
         else
             return recfib(num - 1) + recfib(num-2);
